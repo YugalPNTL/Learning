@@ -30,7 +30,20 @@ body.scrolled .header{transform:translateY(-110%);opacity:0;pointer-events:none;
 .tabs{background:#fff;border-bottom:1.5px solid var(--border);display:flex;justify-content:center;padding:0;overflow-x:auto;-webkit-overflow-scrolling:touch;position:sticky;top:57px;z-index:199;scrollbar-width:none;-ms-overflow-style:none;transition:top .22s ease;}
 .tabs::-webkit-scrollbar{display:none;}
 body.scrolled .tabs{top:0;}
-.tab-btn{background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);font-family:'Inter',sans-serif;font-size:13px;font-weight:500;letter-spacing:0.5px;text-transform:uppercase;padding:13px 22px;cursor:pointer;transition:color .15s,border-color .15s;margin-bottom:-1.5px;white-space:nowrap;}
+.tab-btn {
+  background:none; border:none; border-bottom:2px solid transparent; color:var(--muted);
+  font-family:'Inter',sans-serif; font-size:12px; /* Thoda chota font */
+  font-weight:500; letter-spacing:0.5px; text-transform:uppercase;
+  padding:13px 8px; /* Padding kam ki gayi */
+  cursor:pointer; transition:color .15s,border-color .15s;
+  margin-bottom:-1.5px; white-space:nowrap; 
+  flex: 1; text-align: center; /* Width automatically divide karne ke liye */
+}
+
+/* Tablet aur Desktop ke liye wapas pehle jaisa bada size */
+@media(min-width:600px){
+  .tab-btn { padding:13px 22px; font-size:13px; flex:none; }
+}
 .tab-btn:hover{color:var(--text2);}
 .tab-btn.active{color:var(--text);border-bottom-color:var(--text);}
 .page{max-width:960px;margin:0 auto;padding:32px 20px 0;}
@@ -179,9 +192,16 @@ body.scrolled .data-tbl thead th{top:45px;}
 .pday-badge{font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:3px 9px;border-radius:3px;white-space:nowrap;}
 .pday-badge.rev{color:var(--rev-dark);background:var(--rev-bg);border:1px solid var(--rev-bdr);}
 .pday-badge.exp{color:var(--exp-dark);background:var(--exp-bg);border:1px solid var(--exp-bdr);}
-.pday-split{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1.5px solid var(--border);}
+/* Default Mobile View - 1 Column layout (Revenue upar, Expense neeche) */
+.pday-split{display:grid;grid-template-columns:1fr;gap:0;border-top:1.5px solid var(--border);}
 .pday-split-col{padding:13px 14px;}
-.pday-split-col+.pday-split-col{border-left:1.5px solid var(--border);}
+.pday-split-col+.pday-split-col{border-top:1.5px solid var(--border); border-left:none;}
+
+/* Desktop View - 2 Column Side-by-Side (Aamne-saamne) */
+@media(min-width: 600px){
+  .pday-split{grid-template-columns:1fr 1fr;}
+  .pday-split-col+.pday-split-col{border-top:none; border-left:1.5px solid var(--border);}
+}
 .pday-split-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-bottom:9px;display:block;}
 .pday-split-label.rev{color:var(--rev-dark);}.pday-split-label.exp{color:var(--exp-dark);}
 .pday-g-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px;}
